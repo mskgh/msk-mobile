@@ -1,0 +1,61 @@
+name: mobilemsk
+description: A new Flutter project.
+
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.2 <3.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  
+  cupertino_icons: ^1.0.2
+  device_preview: 1.1.0
+  provider:
+  shared_preferences:
+  get:
+  speed_dial_fab: ^2.3.0
+  intl:
+  flutter_theme_manager: ^0.0.6+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  
+  flutter_lints: ^2.0.0
+
+
+flutter:
+
+  
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+  #   - images/a_dot_ham.jpeg
+
+  
+
+  fonts:
+    - family: Poppians
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+
+#    - family: Trajan Pro
+#      fonts:
+#        - asset: assets/fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
