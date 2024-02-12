@@ -174,3 +174,51 @@ class WarehouseDataProvider extends ChangeNotifier {
   }
 }
 
+
+
+// for shops
+class ShopsDataProvider extends ChangeNotifier {
+  final List<ShopsCard> _shopsCards = [];
+  final List<ShopsCard> _shopsPendingDeletion = [];
+  final List<ShopsCard> _shopsDeletion = [];
+
+  List<ShopsCard> get wCards => _shopsCards;
+  List<ShopsCard> get pendingBusinessDeletion => _shopsPendingDeletion;
+  List<ShopsCard> get businessDeletion => _shopsDeletion;
+
+  /// Add a new business card.
+  void addShops(ShopsCard shopsCard) {
+    _shopsCards.add(shopsCard);
+    notifyListeners();
+  }
+
+  /// Delete a business card.
+  void removeShops(ShopsCard shopsCard) {
+    _shopsPendingDeletion.remove(shopsCard);
+    _shopsDeletion.add(shopsCard); // Move to pending deletion.
+    notifyListeners();
+  }
+
+  /// Move a business card from pending deletion to deletion.
+  void moveShopsPendingToDeletion(ShopsCard shopsCard) {
+    _shopsDeletion.remove(shopsCard);
+    _shopsPendingDeletion.add(shopsCard);
+    notifyListeners();
+  }
+
+   /// pendding deleting new card
+  void deletedShops(ShopsCard shopsCard) {
+    _shopsPendingDeletion.remove(shopsCard);
+    //permenentDeletedCards.add(card); // Store the deleted card
+    notifyListeners();
+  }
+
+
+  /// Restore a deleted business card.
+  void restoreShopsCard(ShopsCard shopsCard) {
+    _shopsDeletion.remove(shopsCard);
+    _shopsCards.add(shopsCard); // Restore the card
+    notifyListeners();
+  }
+}
+

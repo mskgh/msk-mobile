@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speed_dial_fab/speed_dial_fab.dart';
 import '../../../../widgets/button widgets/FABs/business_fab.dart';
+import '../../../../widgets/button widgets/FABs/shops.dart';
 import '../../../../widgets/button widgets/FABs/warehouse_fab.dart';
 import 'Navigation Children/Business Bank/business_Center.dart';
 import 'Navigation Children/Support Bank/support.dart';
@@ -95,7 +96,19 @@ class _MotherPageState extends State<MotherPage> {
           "Organization",
         ],
         secondaryIconsOnPress: [
-          () => {},
+          () => {
+                showModalBottomSheet<void>(
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(50.0)),
+                  ),
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const Shops(); // Use your custom bottom sheet here
+                  },
+                ),
+              },
           () => {
                 showModalBottomSheet<void>(
                   isScrollControlled: true,

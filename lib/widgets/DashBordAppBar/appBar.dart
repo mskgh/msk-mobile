@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../Screens/DashBord/BottonNavigation/Mother Page/Navigation Children/warehours center/warehouse.dart';
+import '../../Screens/DashBord/BottonNavigation/Mother Page/Navigation Children/warehours Bank/warehouse.dart';
 import '../../dark theme/themeClass.dart';
 
 class SearchBars extends StatelessWidget {

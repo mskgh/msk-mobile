@@ -63,10 +63,11 @@ class _ProvideOTPScreenState extends State<ProvideOTPScreen> {
                         decoration: InputDecoration(
                           hintText: 'Enter OTP',
                           border: InputBorder.none,
-                       enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(color: Color(0xFFF3F3F3)),
-          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: Color(0xFFF3F3F3)),
+                          ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide:
@@ -80,17 +81,36 @@ class _ProvideOTPScreenState extends State<ProvideOTPScreen> {
                     SizedBox(height: size * 0.05),
                     Row(
                       children: [
-                        Expanded(
-                          child: TextButton(
-                            child: const Text(
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
                               'Didn\'t receive any code ?',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500),
                             ),
-                            onPressed: () {},
-                          ),
+                            GestureDetector(
+                              onTap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor: Color(0xff1D4771),
+                                    content:
+                                        Text('Code has been sent your mail.'),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Get code',
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Color(0xff1D4771),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          ],
                         ),
                         Expanded(
                           child: TextButton(

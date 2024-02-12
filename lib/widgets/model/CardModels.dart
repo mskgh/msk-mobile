@@ -45,3 +45,19 @@ class WarehouseCard {
     required this.description,
   });
 }
+
+class ShopsCard {
+  final String id;
+  final String name;
+  final String location;
+  final String selectedOrganization;
+  final String description;
+
+  ShopsCard({
+     required this.id,
+    required this.name,
+    required this.location,
+    required this.selectedOrganization,
+    required this.description,
+  });
+}
