@@ -25,6 +25,7 @@ dependencies:
   speed_dial_fab: ^2.3.0
   intl:
   flutter_theme_manager: ^0.0.6+1
+  readmore: ^2.2.0
 
 dev_dependencies:
   flutter_test:

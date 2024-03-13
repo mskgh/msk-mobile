@@ -21,8 +21,8 @@ class _MotherPageState extends State<MotherPage> {
   int currentIndex = 0;
   List<Widget> screens = [
     const Home(),
-    OrganizationHome(),
-    BusinessHome(),
+    const OrganizationHome(),
+    const BusinessHome(),
     const Notifications(),
     const Support(),
   ];
@@ -82,6 +82,7 @@ class _MotherPageState extends State<MotherPage> {
       ),
       floatingActionButton: SpeedDialFabWidget(
         primaryIconCollapse: Icons.close,
+        rotateAngle: 500.0,
         primaryIconExpand: Icons.add,
         secondaryIconsList: const [
           Icons.shop,

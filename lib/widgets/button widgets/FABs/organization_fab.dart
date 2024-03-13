@@ -13,14 +13,12 @@ class OrganizationFAB extends StatefulWidget {
 }
 
 class _OrganizationFABState extends State<OrganizationFAB> {
-
   //String? selectedValue; // Variable to store the selected value
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    
-
     List<String> locationOptions = [
       'Location',
       'Ghana, Accra, Spintex',
@@ -50,7 +48,7 @@ class _OrganizationFABState extends State<OrganizationFAB> {
 
     double size = MediaQuery.of(context).size.width;
     return FractionallySizedBox(
-      heightFactor: 0.7,
+      heightFactor: 0.65,
       child: Container(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -75,7 +73,7 @@ class _OrganizationFABState extends State<OrganizationFAB> {
                       child: const Icon(Icons.cancel_outlined)),
                 ],
               ),
-              SizedBox(height: size * 0.02),
+              SizedBox(height: size * 0.01),
               const Text(
                 'Create your own Organization here',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
@@ -92,6 +90,9 @@ class _OrganizationFABState extends State<OrganizationFAB> {
                     ),
                   ),
                   child: TextField(
+                    showCursor: true,
+                    autofocus: true,
+                    autocorrect: true,
                     controller: nameController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -126,7 +127,7 @@ class _OrganizationFABState extends State<OrganizationFAB> {
                     }).toList(),
                     onChanged: (String? newValue) {
                       // Handle dropdown value changes here
-          
+
                       selectedValue = newValue;
                     },
                     // Set an initial value if needed
@@ -146,6 +147,7 @@ class _OrganizationFABState extends State<OrganizationFAB> {
                     ),
                   ),
                   child: TextField(
+                    maxLength: 500,
                     controller: descriptionController,
                     maxLines: 10,
                     decoration: const InputDecoration(

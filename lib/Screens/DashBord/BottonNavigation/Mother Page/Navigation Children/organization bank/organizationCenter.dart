@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mobilemsk/Screens/DashBord/BottonNavigation/Mother%20Page/Navigation%20Children/organization%20bank/deleted_organization.dart';
-import 'package:mobilemsk/Screens/DashBord/BottonNavigation/Mother%20Page/Navigation%20Children/organization%20bank/organizations.dart';
+import 'package:mobilemsk/Screens/DashBord/BottonNavigation/Mother%20Page/Navigation%20Children/organization%20bank/deleted%20organization%20screen%20size/deleted_organization.dart';
+import 'package:mobilemsk/Screens/DashBord/BottonNavigation/Mother%20Page/Navigation%20Children/organization%20bank/Organization%20Screen%20Sizes/organizations.dart';
 import '../../../../../../widgets/DashBordAppBar/appBar.dart';
-import 'pendding_deletion.dart';
+import 'pending deletion screen sizes/pendding_deletion.dart';
 
 class OrganizationHome extends StatefulWidget {
+  // final Function(String) onValueChanged;
   const OrganizationHome({super.key});
 
   @override
@@ -31,11 +32,25 @@ class _OrganizationHomeState extends State<OrganizationHome>
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
     final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
+    //  String searchText = '';
+    //   // Call the callback function whenever search text changes
+    //   void onSearchTextChanged(String value) {
+
+    //     setState(() {
+
+    //       searchText = value;
+    //     });
+    //     widget.onValueChanged(value); // Call the callback function
+    //   }
+
     return Scaffold(
       body: Column(
         children: [
           const MyCustomAppBar(
-              myWidget: SearchBars(searchTitle: "Search Orgainization")),
+              myWidget: SearchBars(
+            searchTitle: "Search Orgainization",
+          )),
           SizedBox(height: size * 0.05),
           Container(
             height: 40,
@@ -47,7 +62,6 @@ class _OrganizationHomeState extends State<OrganizationHome>
               controller: _tabController,
               indicatorSize: TabBarIndicatorSize.tab,
               isScrollable: true,
-              
               labelStyle: const TextStyle(
                 fontFamily: 'Poppians',
               ),
@@ -77,8 +91,10 @@ class _OrganizationHomeState extends State<OrganizationHome>
               controller: _tabController,
               children: const [
                 Organization(),
-                PendingOrganization(),
-                DeletedOrganizationsPage(),
+                PendingOrganizationCenter(),
+                //PendingOrganization(),
+                //DeletedOrganizationsPage(),
+                DeletedOrganizationsPageCenter()
                 //OrganizationSettings(),
               ],
             ),

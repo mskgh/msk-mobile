@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../../../widgets/DashBordAppBar/appBar.dart';
-import 'business.dart';
+import 'bussiness screen size/business.dart';
 import 'business_pending_deletion.dart';
 import 'deletedBusiness.dart';
-// Import the DeletedOrganizationsPage widget
+
 
 class BusinessHome extends StatefulWidget {
   const BusinessHome({super.key});
@@ -53,7 +53,7 @@ class _BusinessHomeState extends State<BusinessHome>
               child: TabBar(
                 controller: _tabController,
                 isScrollable: true,
-              
+
                 labelStyle: const TextStyle(
                   fontFamily: 'Poppians',
                 ),
@@ -85,7 +85,8 @@ class _BusinessHomeState extends State<BusinessHome>
             child: TabBarView(
               controller: _tabController,
               children: const [
-                Business(),
+                BusinessCenter(),
+                //Business(),
                 BusPendingOrganization(),
                 DeletedBusiness(),
                 //OrganizationSettings(),

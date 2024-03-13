@@ -5,6 +5,7 @@ import '../../dark theme/themeClass.dart';
 
 class SearchBars extends StatelessWidget {
   final String searchTitle;
+  //final void Function(String) function;
   const SearchBars({super.key, required this.searchTitle});
 
   @override
@@ -19,6 +20,9 @@ class SearchBars extends StatelessWidget {
         ),
         child: Expanded(
           child: TextField(
+            onChanged: (value) {
+             //function(value);
+            },
             decoration: InputDecoration(
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20.0),

@@ -38,6 +38,18 @@ class _BusPendingOrganizationState extends State<BusPendingOrganization> {
       }
     }
 
+    if (busDeletedCards.isEmpty) {
+      return const Center(
+        child: Text(
+          'No Business found at pending deletion',
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: ListView.builder(
         padding: const EdgeInsets.all(10),
@@ -106,19 +118,19 @@ class _BusPendingOrganizationState extends State<BusPendingOrganization> {
                         ],
                       ),
                       Expanded(child: Container()),
-                      InkWell(
-                        onTap: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Wait! I will fix you :)'),
-                            ),
-                          );
-                        },
-                        child: const ImageIcon(
-                          AssetImage("assets/images/edit.png"),
-                          size: 24,
-                        ),
-                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     ScaffoldMessenger.of(context).showSnackBar(
+                      //       const SnackBar(
+                      //         content: Text('Wait! I will fix you :)'),
+                      //       ),
+                      //     );
+                      //   },
+                      //   child: const ImageIcon(
+                      //     AssetImage("assets/images/edit.png"),
+                      //     size: 24,
+                      //   ),
+                      // ),
                     ])
                   ])),
             ),

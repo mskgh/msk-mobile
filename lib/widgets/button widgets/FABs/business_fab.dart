@@ -4,7 +4,6 @@ import '../../model/CardModels.dart';
 import '../../model/OrganizationDataProvider.dart';
 import '../big buttons/secondary_button.dart';
 
-
 class BusinessFAB extends StatefulWidget {
   const BusinessFAB({super.key});
 
@@ -13,18 +12,23 @@ class BusinessFAB extends StatefulWidget {
 }
 
 class _BusinessFABState extends State<BusinessFAB> {
-
   //String? selectedValue; // Variable to store the selected value
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    
-
-    List<String> locationOptions = ['Location', 'Ghana, Accra, Spintex', 'Ghana, Kumasi, Titus'];
+    List<String> locationOptions = [
+      'Location',
+      'Ghana, Accra, Spintex',
+      'Ghana, Kumasi, Titus'
+    ];
     String? selectedValue = 'Location';
 
-    List<String> selectOrgainization = ['Select Orgainization', 'A and K Ventures', 'Beatthem Cool Store'];
+    List<String> selectOrgainization = [
+      'Select Orgainization',
+      'A and K Ventures',
+      'Beatthem Cool Store'
+    ];
     String? organizationSelected = 'Select Orgainization';
 
     void handleSubmit() {
@@ -34,13 +38,12 @@ class _BusinessFABState extends State<BusinessFAB> {
       final String orgDescription = descriptionController.text;
       final String ids = UniqueKey().toString();
 
-      
       final BusinessCard newBusinessCard = BusinessCard(
         id: ids,
         name: orgName,
         location: orgLocation,
         selectedOrganization: orgSelected,
-        description: orgDescription, 
+        description: orgDescription,
       );
 
       final businessDataProvider =
@@ -54,7 +57,6 @@ class _BusinessFABState extends State<BusinessFAB> {
     return FractionallySizedBox(
       heightFactor: 0.80,
       child: SingleChildScrollView(
-        
         child: Container(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -78,13 +80,13 @@ class _BusinessFABState extends State<BusinessFAB> {
                       child: const Icon(Icons.cancel_outlined)),
                 ],
               ),
-              SizedBox(height: size * 0.02),
+              SizedBox(height: size * 0.01),
               const Text(
                 'Create your own Business here',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
               ),
               SizedBox(height: size * 0.05),
-             
+
               //---------------------------------------------
               // Business Name
               //----------------------------------------------
@@ -99,6 +101,9 @@ class _BusinessFABState extends State<BusinessFAB> {
                     ),
                   ),
                   child: TextField(
+                    showCursor: true,
+                    autofocus: true,
+                    autocorrect: true,
                     controller: nameController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -108,10 +113,48 @@ class _BusinessFABState extends State<BusinessFAB> {
                 ),
               ),
               SizedBox(height: size * 0.05),
+
+              //--------------------------
+              // Select orgainization
+              // -------------------------
+              ClipRRect(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Container(
+                  padding: const EdgeInsets.only(left: 7.2),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                  ),
+                  child: DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Select orgainization',
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    items: selectOrgainization
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      // Handle dropdown value changes here
+
+                      organizationSelected = newValue;
+                    },
+                    // Set an initial value if needed
+                    value: organizationSelected,
+                  ),
+                ),
+              ),
+              SizedBox(height: size * 0.05),
+
               //---------------------------------------------
               // Business Location
               //----------------------------------------------
-              
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
                 child: Container(
@@ -146,48 +189,10 @@ class _BusinessFABState extends State<BusinessFAB> {
                 ),
               ),
               SizedBox(height: size * 0.05),
-              //--------------------------
-              // Select orgainization
-              // -------------------------
-              
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5.0),
-                child: Container(
-                  padding: const EdgeInsets.only(left: 7.2),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: 2.0,
-                    ),
-                  ),
-                  child: DropdownButtonFormField<String>(
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Select orgainization',
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                    items: selectOrgainization
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      // Handle dropdown value changes here
-
-                      organizationSelected = newValue;
-                    },
-                    // Set an initial value if needed
-                    value: organizationSelected,
-                  ),
-                ),
-              ),
               //-------------------------
               // Business Desc
               //--------------------------
-              SizedBox(height: size * 0.05),
-              
+
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
                 child: Container(
@@ -209,7 +214,11 @@ class _BusinessFABState extends State<BusinessFAB> {
                 ),
               ),
               SizedBox(height: size * 0.04),
-              SecondaryButton(buttonName: 'Submit', onPress: handleSubmit, color: const Color(0xFF1D4771),)
+              SecondaryButton(
+                buttonName: 'Submit',
+                onPress: handleSubmit,
+                color: const Color(0xFF1D4771),
+              )
             ],
           ),
         ),

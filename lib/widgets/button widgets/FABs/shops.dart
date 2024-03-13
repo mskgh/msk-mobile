@@ -17,38 +17,51 @@ class _BusinessFABState extends State<Shops> {
   final TextEditingController descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    //---------------------------------
+    String? selectedValue = 'Location';
     List<String> locationOptions = [
       'Location',
       'Ghana, Accra, Spintex',
       'Ghana, Kumasi, Titus'
     ];
-    String? selectedValue = 'Location';
 
+    //-----------------------------------------------
+    String? organizationSelected = 'Select Orgainization';
     List<String> selectOrgainization = [
       'Select Orgainization',
       'A and K Ventures',
       'Beatthem Cool Store'
     ];
-    String? organizationSelected = 'Select Orgainization';
+
+    //-----------------------------------------------
+    String? businessSelected = 'Select Business';
+    List<String> selectBusiness = [
+      'Select Business',
+      'Business A',
+      'Business B',
+      'Business C'
+    ];
 
     void handleSubmit() {
       final String orgName = nameController.text;
       final String orgLocation = selectedValue ?? " ";
       final String orgSelected = organizationSelected ?? " ";
+      final String busSelected = businessSelected ?? " ";
       final String orgDescription = descriptionController.text;
       final String ids = UniqueKey().toString();
 
-      final WarehouseCard newWarehouseCard = WarehouseCard(
+      final ShopsCard newShopCard = ShopsCard(
         id: ids,
         name: orgName,
         location: orgLocation,
         selectedOrganization: orgSelected,
+        selectedBusiness: busSelected,
         description: orgDescription,
       );
 
-      final warehouseDataProvider =
-          Provider.of<WarehouseDataProvider>(context, listen: false);
-      warehouseDataProvider.addWareHouse(newWarehouseCard);
+      final shopsDataProvider =
+          Provider.of<ShopsDataProvider>(context, listen: false);
+      shopsDataProvider.addShops(newShopCard);
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -61,7 +74,7 @@ class _BusinessFABState extends State<Shops> {
 
     double size = MediaQuery.of(context).size.width;
     return FractionallySizedBox(
-      heightFactor: 0.80,
+      heightFactor: 0.90,
       child: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16.0),
@@ -116,6 +129,84 @@ class _BusinessFABState extends State<Shops> {
                 ),
               ),
               SizedBox(height: size * 0.05),
+
+              //--------------------------
+              // Select orgainization
+              // -------------------------
+
+              ClipRRect(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Container(
+                  padding: const EdgeInsets.only(left: 7.2),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                  ),
+                  child: DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Select orgainization',
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    items: selectOrgainization
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      // Handle dropdown value changes here
+
+                      organizationSelected = newValue;
+                    },
+                    // Set an initial value if needed
+                    value: organizationSelected,
+                  ),
+                ),
+              ),
+              SizedBox(height: size * 0.05),
+
+              //---------------------------------------------
+              // Business Location
+              //----------------------------------------------
+
+              ClipRRect(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Container(
+                  padding: const EdgeInsets.only(left: 7.2),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                  ),
+                  child: DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Select Business',
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    items: selectBusiness
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      // Handle dropdown value changes here
+
+                      businessSelected = newValue;
+                    },
+                    // Set an initial value if needed
+                    value: businessSelected,
+                  ),
+                ),
+              ),
+              SizedBox(height: size * 0.05),
               //---------------------------------------------
               // Business Location
               //----------------------------------------------
@@ -154,43 +245,7 @@ class _BusinessFABState extends State<Shops> {
                 ),
               ),
               SizedBox(height: size * 0.05),
-              //--------------------------
-              // Select orgainization
-              // -------------------------
 
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5.0),
-                child: Container(
-                  padding: const EdgeInsets.only(left: 7.2),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: 2.0,
-                    ),
-                  ),
-                  child: DropdownButtonFormField<String>(
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Select orgainization',
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                    items: selectOrgainization
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      // Handle dropdown value changes here
-
-                      organizationSelected = newValue;
-                    },
-                    // Set an initial value if needed
-                    value: organizationSelected,
-                  ),
-                ),
-              ),
               //-------------------------
               // Business Desc
               //--------------------------

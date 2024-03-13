@@ -6,9 +6,8 @@ import '../../../../../../widgets/model/CardModels.dart';
 import '../../../../../../widgets/model/OrganizationDataProvider.dart';
 
 class UpdateOrganization extends StatefulWidget {
-  const UpdateOrganization({
-    Key? key,
-  }) : super(key: key);
+  final OrganizationCard oldCard;
+  const UpdateOrganization({Key? key, required this.oldCard}) : super(key: key);
 
   @override
   State<UpdateOrganization> createState() => _UpdateOrganizationState();
@@ -37,10 +36,8 @@ class _UpdateOrganizationState extends State<UpdateOrganization> {
     super.dispose();
   }
 
-  
-
-
-
+  final FocusNode _focusNode1 = FocusNode();
+  final bool _focusNode = true;
 
   void handleUpdate(context) {
     final organizationDataProvider =
@@ -49,7 +46,7 @@ class _UpdateOrganizationState extends State<UpdateOrganization> {
     final String orgName = nameController.text;
     final String orgLocation = selectedValue ?? " ";
     final String orgDescription = descriptionController.text;
-    final String ids = UniqueKey().toString();
+    final String ids = widget.oldCard.id;
 
     final updatedCard = OrganizationCard(
         id: ids,
@@ -79,18 +76,18 @@ class _UpdateOrganizationState extends State<UpdateOrganization> {
     final organizationDataProvider =
         Provider.of<OrganizationDataProvider>(context);
 
-    void handleClick(organizationCard)  {
+    void handleClick(organizationCard) {
       organizationDataProvider.removeCard(organizationCard);
-          // ScaffoldMessenger.of(context).showSnackBar(
-          //   const SnackBar(
-          //     content: Text(
-          //         'Your deleted organization has been moved to pending deletion'),
-          //   ),
-          // );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //     content: Text(
+      //         'Your deleted organization has been moved to pending deletion'),
+      //   ),
+      // );
     }
 
     return FractionallySizedBox(
-        heightFactor: 0.70,
+        heightFactor: 0.80,
         child: SingleChildScrollView(
             child: Container(
           padding: const EdgeInsets.all(16.0),
@@ -118,16 +115,17 @@ class _UpdateOrganizationState extends State<UpdateOrganization> {
                 ),
                 SizedBox(height: size * 0.05),
                 TextField(
+                  // focusNode: _focusNode,
                   controller: nameController,
                   decoration: InputDecoration(
                       border: const OutlineInputBorder(),
-                      hintText: "nameController"),
+                      hintText: widget.oldCard.name),
                 ),
                 SizedBox(height: size * 0.05),
                 DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Location',
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    hintText: widget.oldCard.location,
                   ),
                   items: locationOptions
                       .map<DropdownMenuItem<String>>((String value) {
@@ -141,29 +139,33 @@ class _UpdateOrganizationState extends State<UpdateOrganization> {
                       selectedValue = newValue;
                     });
                   },
-                  value: selectedValue,
                 ),
                 SizedBox(height: size * 0.05),
                 TextField(
                   controller: descriptionController,
                   maxLines: 10,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Description...',
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    hintText: widget.oldCard.description,
                   ),
                 ),
                 SizedBox(height: size * 0.075),
                 SecondaryButton(
                   buttonName: 'Update',
                   onPress: () {
+                    // OrganizationCard organizationCard = OrganizationCard(id: id, name: org, location: location, description: description)
                     handleUpdate(context);
+                    //organizationDataProvider.EaddCard(organizationCard);
                   },
                   color: const Color(0xFF1D4771),
                   //onPress: () => handleUpdate(context)
                 ),
                 SizedBox(height: size * 0.05),
                 SecondaryButton(
-                  buttonName: 'Delete', onPress: () {},
+                  buttonName: 'Delete',
+                  onPress: () {
+                    Navigator.pop(context);
+                  },
                   color: const Color(0xFFEF0000),
                   //onPress: () => handleUpdate(context))
                 ),

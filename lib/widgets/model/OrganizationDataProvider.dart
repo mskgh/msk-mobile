@@ -19,7 +19,6 @@ class OrganizationDataProvider extends ChangeNotifier {
 
 // getters
   List<OrganizationCard> get cards => _cards;
-   List<OrganizationCard> get Ecards => _cards;
   List<OrganizationCard> get pendingDeletion => _pendingDeletion;
   List<OrganizationCard> get deletedCards => _deletedCards;
   List<OrganizationCard> get permenentDeletedCards => _permenentDeletedCards;
@@ -28,12 +27,6 @@ class OrganizationDataProvider extends ChangeNotifier {
   /// adding new card
   void addCard(OrganizationCard card) {
     _cards.add(card);
-    notifyListeners();
-  }
-
-    void EaddCard(OrganizationCard card) {
-    _cards.remove(card);
-    Ecards.add(card);
     notifyListeners();
   }
 
@@ -68,9 +61,9 @@ class OrganizationDataProvider extends ChangeNotifier {
 }
 
 
-/// Update an existing organization card
+// Update an existing organization card
  void updateCard(OrganizationCard updatedCard) {
-  final index = _cards.indexWhere((card) => card.id == updatedCard.id);
+  final index = _cards.indexWhere((card) => card.id == updatedCard.id);    
   if (index != -1) {
     _cards[index] = updatedCard;
     notifyListeners();
@@ -126,7 +119,19 @@ class BusinessDataProvider extends ChangeNotifier {
     _businessCards.add(busCard); // Restore the card
     notifyListeners();
   }
+
+  // Update an existing organization card
+ void updateCard(BusinessCard updatedCard) {
+  final index = _businessCards.indexWhere((bCard) => bCard.id == updatedCard.id);    
+  if (index != -1) {
+    _businessCards[index] = updatedCard;
+    notifyListeners();
+  }
 }
+}
+
+
+
 
 // for warehouse
 class WarehouseDataProvider extends ChangeNotifier {

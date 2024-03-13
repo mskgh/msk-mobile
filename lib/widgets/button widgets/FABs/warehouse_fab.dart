@@ -25,6 +25,10 @@ class _BusinessFABState extends State<WarehouseFAB> {
     ];
     String? selectedValue = 'Location';
 
+    // business sellection
+    List<String> selectBussiness = ['Bussinss', 'Bussinss A', 'Bussinss B'];
+    String? selectedBussiness = 'Bussinss';
+
     List<String> selectOrgainization = [
       'Select Orgainization',
       'A and K Ventures',
@@ -36,6 +40,7 @@ class _BusinessFABState extends State<WarehouseFAB> {
       final String orgName = nameController.text;
       final String orgLocation = selectedValue ?? " ";
       final String orgSelected = organizationSelected ?? " ";
+      final String busSelected = selectedBussiness ?? " ";
       final String orgDescription = descriptionController.text;
       final String ids = UniqueKey().toString();
 
@@ -45,6 +50,7 @@ class _BusinessFABState extends State<WarehouseFAB> {
         location: orgLocation,
         selectedOrganization: orgSelected,
         description: orgDescription,
+        sellectedBussiness: busSelected,
       );
 
       final warehouseDataProvider =
@@ -117,44 +123,7 @@ class _BusinessFABState extends State<WarehouseFAB> {
                 ),
               ),
               SizedBox(height: size * 0.05),
-              //---------------------------------------------
-              // Business Location
-              //----------------------------------------------
 
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5.0),
-                child: Container(
-                  padding: const EdgeInsets.only(left: 7.2),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: 2.0,
-                    ),
-                  ),
-                  child: DropdownButtonFormField<String>(
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Warehouse Location',
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                    items: locationOptions
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      // Handle dropdown value changes here
-
-                      selectedValue = newValue;
-                    },
-                    // Set an initial value if needed
-                    value: selectedValue,
-                  ),
-                ),
-              ),
-              SizedBox(height: size * 0.05),
               //--------------------------
               // Select orgainization
               // -------------------------
@@ -192,6 +161,87 @@ class _BusinessFABState extends State<WarehouseFAB> {
                   ),
                 ),
               ),
+              SizedBox(height: size * 0.05),
+
+              //--------------------------
+              // Select orgainization
+              // -------------------------
+
+              ClipRRect(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Container(
+                  padding: const EdgeInsets.only(left: 7.2),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                  ),
+                  child: DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Select orgainization',
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    items: selectBussiness
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      // Handle dropdown value changes here
+
+                      selectedBussiness = newValue;
+                    },
+                    // Set an initial value if needed
+                    value: selectedBussiness,
+                  ),
+                ),
+              ),
+              SizedBox(height: size * 0.05),
+
+
+              
+              //---------------------------------------------
+              // Business Location
+              //----------------------------------------------
+              ClipRRect(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Container(
+                  padding: const EdgeInsets.only(left: 7.2),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                  ),
+                  child: DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Warehouse Location',
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    items: locationOptions
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      // Handle dropdown value changes here
+
+                      selectedValue = newValue;
+                    },
+                    // Set an initial value if needed
+                    value: selectedValue,
+                  ),
+                ),
+              ),
+              SizedBox(height: size * 0.05),
+
               //-------------------------
               // Business Desc
               //--------------------------

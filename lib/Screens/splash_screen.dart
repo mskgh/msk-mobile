@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'Auth/login_screen.dart';
+import 'package:get/get.dart';
+import 'Auth/login arena/login_center.dart';
+import 'Auth/login arena/login_screen_phone.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -10,14 +12,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     Timer(const Duration(seconds: 3), () {
-      Navigator.push(
-          context, MaterialPageRoute(
-          builder: (context)=>const LoginScreen()));
-          //builder: (context)=>const MotherPage()));
+      Get.offAll(const LoginScreen());
+      // Navigator.push(
+      //     context, MaterialPageRoute(
+      //     builder: (context)=>const LoginScreen()));
     });
     super.initState();
   }
@@ -28,16 +29,17 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
           child: Container(
-            margin: EdgeInsets.only(bottom: size*0.1),
-            height: size*0.4, width: size*0.4,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/mskgifNew.gif'),
-                  fit: BoxFit.cover,
-                  repeat: ImageRepeat.noRepeat,
-                ),
-              ),
-          )),
+        margin: EdgeInsets.only(bottom: size * 0.1),
+        height: size * 0.4,
+        width: size * 0.4,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/mskgifNew.gif'),
+            fit: BoxFit.cover,
+            repeat: ImageRepeat.noRepeat,
+          ),
+        ),
+      )),
     );
   }
 }
